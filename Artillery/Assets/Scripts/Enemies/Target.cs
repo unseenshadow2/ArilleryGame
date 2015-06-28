@@ -6,21 +6,22 @@
 using UnityEngine;
 using System.Collections;
 
-public class Target : MonoBehaviour {
+public class Target : MonoBehaviour 
+{
+	int score = 1000;
 
 	void Start()
 	{
-		//GameManager.instance.numTargets += 1;
+		GameManager.instance.numTargets += 1;
 	}
 
 	void TargetHit()
 	{
-		//GameManager.instance.numTargets -= 1;
-		//GameManager.instance.playerScore += 1000;
-		//Destroy(gameObject);
+		GameManager.instance.TargetDead (score);
+		Destroy(gameObject);
 	}
 
-	void OnCollisionEnter(Collider coll)
+	void OnCollisionEnter(Collision coll)
 	{
 		TargetHit ();
 	}
