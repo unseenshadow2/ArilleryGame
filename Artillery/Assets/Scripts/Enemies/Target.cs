@@ -1,15 +1,27 @@
-﻿using UnityEngine;
+﻿/*
+	Script: Target
+	Purpose: Add points and destroy self when hit bullets
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class Target : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	void Start()
+	{
+		//GameManager.instance.numTargets += 1;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void TargetHit()
+	{
+		//GameManager.instance.numTargets -= 1;
+		//GameManager.instance.playerScore += 1000;
+		//Destroy(gameObject);
+	}
+
+	void OnCollisionEnter(Collider coll)
+	{
+		TargetHit ();
 	}
 }
