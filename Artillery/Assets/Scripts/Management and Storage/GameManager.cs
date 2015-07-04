@@ -14,15 +14,12 @@ public class GameManager : MonoBehaviour
 	public PlayerData playerData;
 	public EnemyData enemyData;
 	public TimeData timeData;
+	public ControlsData controlsData;
 
-<<<<<<< HEAD
 	bool isGameOver = false;
 
 	[HideInInspector] public int numTargets;
-=======
-	[HideInInspector] public int numTargets;
 	[HideInInspector] public TimeEvent[] timedEvents;
->>>>>>> ParschDev
 
 	// Private Variabels
 	private float nextPulse;
@@ -101,17 +98,19 @@ public class PlayerData
 	public int playerScore = 0;
 	public int bonusScore = 60000;
 	public int finalScore;
-	public float forwardSpeed; // In meters per second
-	public float reverseSpeed; // In meters per second
-	public float turnSpeed; // In degrees per second
-	public float cannonUpDownSpeed;
-	public float cannonTurnSpeed; // In degrees per second
+	public float forwardSpeed = 5; // In meters per second
+	public float reverseSpeed = 3; // In meters per second
+	public float turnSpeed = 90; // In degrees per second
+	public float cannonUpDownSpeed = 30; // In degrees per second
+	public float cannonTurnSpeed = 30; // In degrees per second
+    public float cannonVerticleLimit = 90; // In degrees
 }
 
 [System.Serializable]
 public class EnemyData
 {
 	public int scoreValue = 1;
+    public int health = 1; // The number of hits that the targets require before they die
 }
 
 [System.Serializable]
@@ -124,13 +123,13 @@ public class TimeData
 [System.Serializable]
 public class ControlsData
 {
-	public KeyCode moveForward = ;
-	public KeyCode moveBackward;
-	public KeyCode turnLeft;
-	public KeyCode turnRight;
-	public KeyCode turretUp;
-	public KeyCode turretDown;
-	public KeyCode turretRight;
-	public KeyCode turretLeft;
-	public KeyCode fire;
+	public KeyCode moveForward = KeyCode.W;
+	public KeyCode moveBackward = KeyCode.S;
+	public KeyCode turnLeft = KeyCode.A;
+	public KeyCode turnRight = KeyCode.D;
+	public KeyCode turretUp = KeyCode.UpArrow;
+	public KeyCode turretDown = KeyCode.DownArrow;
+	public KeyCode turretRight = KeyCode.RightArrow;
+	public KeyCode turretLeft = KeyCode.LeftArrow;
+	public KeyCode fire = KeyCode.Space;
 }

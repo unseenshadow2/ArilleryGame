@@ -18,52 +18,55 @@ public class PlayerController : MonoBehaviour
 	void Start () 
 	{
 		data = GameManager.instance.playerData;
-		motor = gameObject.GetComponent<Motor> ();
+		motor = GetComponent<Motor> ();
+        motor.turretLimits = GameManager.instance.playerData.cannonVerticleLimit;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKey("w"))
+		// Forward/Backward
+		if (Input.GetKey(GameManager.instance.controlsData.moveForward) || Input.GetKeyDown(GameManager.instance.controlsData.moveForward))
 		{
+            motor.MoveFoward(GameManager.instance.playerData.forwardSpeed);
+		}
+        else if (Input.GetKey(GameManager.instance.controlsData.moveBackward) || Input.GetKeyDown(GameManager.instance.controlsData.moveBackward))
+        {
+            motor.MoveBackward(GameManager.instance.playerData.reverseSpeed);
+        }
+        else
+        {
+            motor.ApplyGravity();
+        }
 
+		// Body left/right
+		if (Input.GetKey(GameManager.instance.controlsData.turnRight) || Input.GetKeyDown(GameManager.instance.controlsData.turnRight))
+		{
+            motor.TurnRight(GameManager.instance.playerData.turnSpeed);
+		}
+		else if (Input.GetKey(GameManager.instance.controlsData.turnLeft) || Input.GetKeyDown(GameManager.instance.controlsData.turnLeft))
+		{
+            motor.TurnLeft(GameManager.instance.playerData.turnSpeed);
 		}
 
-		if (Input.GetKey("a"))
-		{
-			
-		}
+		// Turret up/down
+        if (Input.GetKey(GameManager.instance.controlsData.turretUp) || Input.GetKeyDown(GameManager.instance.controlsData.turretUp))
+        {
+            motor.TurretUp(GameManager.instance.playerData.cannonUpDownSpeed);
+        }
+        else if (Input.GetKey(GameManager.instance.controlsData.turretDown) || Input.GetKeyDown(GameManager.instance.controlsData.turretDown))
+        {
+            motor.TurretDown(GameManager.instance.playerData.cannonUpDownSpeed);
+        }
 
-		if (Input.GetKey("s"))
-		{
-			
-		}
-
-		if (Input.GetKey("d"))
-		{
-			
-		}
-
-		if (Input.GetKey(KeyCode.UpArrow))
-		{
-			
-		}
-
-		if (Input.GetKey(KeyCode.DownArrow))
-		{
-			
-		}
-
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			
-		}
-
-		if (Input.GetKey(KeyCode.RightArrow))
-		{
-			
-		}
-
-
+		// Turret left/right
+        if (Input.GetKey(GameManager.instance.controlsData.turretRight) || Input.GetKeyDown(GameManager.instance.controlsData.turretRight))
+        {
+            motor.TurretRight(GameManager.instance.playerData.cannonTurnSpeed);
+        }
+        else if (Input.GetKey(GameManager.instance.controlsData.turretLeft) || Input.GetKeyDown(GameManager.instance.controlsData.turretLeft))
+        {
+            motor.TurretLeft(GameManager.instance.playerData.cannonTurnSpeed);
+        }
 	}
 }
