@@ -132,4 +132,5 @@ public class ControlsData
 	public KeyCode turretRight = KeyCode.RightArrow;
 	public KeyCode turretLeft = KeyCode.LeftArrow;
 	public KeyCode fire = KeyCode.Space;
+    public KeyCode fixTurret = KeyCode.R;
 }

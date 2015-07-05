@@ -58,6 +58,10 @@ public class PlayerController : MonoBehaviour
         {
             motor.TurretDown(GameManager.instance.playerData.cannonUpDownSpeed);
         }
+        else if (Input.GetKey(GameManager.instance.controlsData.fixTurret) || Input.GetKeyDown(GameManager.instance.controlsData.fixTurret))
+        {
+            motor.FixTurret(GameManager.instance.playerData.cannonUpDownSpeed);
+        }
 
 		// Turret left/right
         if (Input.GetKey(GameManager.instance.controlsData.turretRight) || Input.GetKeyDown(GameManager.instance.controlsData.turretRight))
