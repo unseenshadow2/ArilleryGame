@@ -1,4 +1,4 @@
-/* 
+﻿/* 
  * Script: PlayerController
  * Purpose: To handle all of the player's input
  */
@@ -8,18 +8,25 @@ using System.Collections;
 
 [RequireComponent (typeof(PlayerData))]
 [RequireComponent (typeof(Motor))]
+[RequireComponent(typeof(Artillery))]
 
 public class PlayerController : MonoBehaviour 
 {
 	public PlayerData data;
+	public ControlsData controls;
 	public Motor motor;
+	public Cannon cannon;
+	public Artillery artillery;
 
 	// Use this for initialization
 	void Start () 
 	{
 		data = GameManager.instance.playerData;
+		controls = GameManager.instance.controls;
 		motor = GetComponent<Motor> ();
         motor.turretLimits = GameManager.instance.playerData.cannonVerticleLimit;
+		cannon = gameObject.GetComponent<Cannon> ();
+		artillery = gameObject.GetComponent<Artillery> ();
 	}
 	
 	// Update is called once per frame

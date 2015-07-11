@@ -98,6 +98,7 @@ public class PlayerData
 	public int playerScore = 0;
 	public int bonusScore = 60000;
 	public int finalScore;
+
 	public float forwardSpeed = 5; // In meters per second
 	public float reverseSpeed = 3; // In meters per second
 	public float turnSpeed = 90; // In degrees per second
@@ -123,6 +124,7 @@ public class TimeData
 [System.Serializable]
 public class ControlsData
 {
+
 	public KeyCode moveForward = KeyCode.W;
 	public KeyCode moveBackward = KeyCode.S;
 	public KeyCode turnLeft = KeyCode.A;
