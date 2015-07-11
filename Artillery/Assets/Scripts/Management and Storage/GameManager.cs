@@ -12,17 +12,14 @@ public class GameManager : MonoBehaviour
 	// Public Variables
 	public static GameManager instance;
 	public PlayerData playerData;
+	public ControlsData controls;
 	public EnemyData enemyData;
 	public TimeData timeData;
 
-<<<<<<< HEAD
 	bool isGameOver = false;
 
 	[HideInInspector] public int numTargets;
-=======
-	[HideInInspector] public int numTargets;
 	[HideInInspector] public TimeEvent[] timedEvents;
->>>>>>> ParschDev
 
 	// Private Variabels
 	private float nextPulse;
@@ -124,7 +121,7 @@ public class TimeData
 [System.Serializable]
 public class ControlsData
 {
-	public KeyCode moveForward = ;
+	public KeyCode moveForward;
 	public KeyCode moveBackward;
 	public KeyCode turnLeft;
 	public KeyCode turnRight;

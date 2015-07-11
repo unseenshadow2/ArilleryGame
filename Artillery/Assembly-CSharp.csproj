@@ -48,8 +48,12 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Enemies\Target.cs" />
      <Compile Include="Assets\Scripts\Entities\Artillery.cs" />
+     <Compile Include="Assets\Scripts\Entities\Bullet.cs" />
      <Compile Include="Assets\Scripts\Entities\Cannon.cs" />
+     <Compile Include="Assets\Scripts\Entities\Marker.cs" />
      <Compile Include="Assets\Scripts\Entities\Motor.cs" />
+     <Compile Include="Assets\Scripts\Environment\PhysicsMovement.cs" />
+     <Compile Include="Assets\Scripts\Environment\TimeEvent.cs" />
      <Compile Include="Assets\Scripts\Management and Storage\GameManager.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
  <Reference Include="UnityEngine.UI">

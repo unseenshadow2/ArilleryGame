@@ -10,6 +10,7 @@ using System.Collections;
 public class Motor : MonoBehaviour 
 {
 	public Transform tf;
+	public Transform turretTF;
 
 	// Use this for initialization
 	void Start () 
@@ -21,5 +22,16 @@ public class Motor : MonoBehaviour
 	void Update () 
 	{
 	
+	}
+
+	public void RotateTurret(float speed)
+	{
+		turretTF.Rotate (Vector3.up * speed * Time.deltaTime, Space.World);
+	}
+
+	public void TurretUpDown(float speed)
+	{
+		turretTF.Rotate (Vector3.right * speed * Time.deltaTime);
+
 	}
 }
