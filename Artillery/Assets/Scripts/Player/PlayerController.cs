@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  * Script: PlayerController
  * Purpose: To handle all of the player's input
  */
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 		// Forward/Backward
 		if (Input.GetKey(GameManager.instance.controlsData.moveForward) || Input.GetKeyDown(GameManager.instance.controlsData.moveForward))
 		{
-            motor.MoveFoward(GameManager.instance.playerData.forwardSpeed);
+            motor.MoveForward(GameManager.instance.playerData.forwardSpeed);
 		}
         else if (Input.GetKey(GameManager.instance.controlsData.moveBackward) || Input.GetKeyDown(GameManager.instance.controlsData.moveBackward))
         {

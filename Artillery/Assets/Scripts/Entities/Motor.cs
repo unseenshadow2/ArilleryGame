@@ -17,11 +17,14 @@ public class Motor : MonoBehaviour
 
     [Header("Setup Values")]
     public Transform turretTF;
+	public Transform bottomPoint;
+	public CapsuleCollider collider;
 
     [HideInInspector] public Transform tf;
     [HideInInspector] public PlayerController player;
-    [HideInInspector] public CharacterController controller;
     [HideInInspector] public float turretLimits; // In degrees from 0
+	[HideInInspector] public Transform bottomTF;
+	[HideInInspector] public CharacterController controller;
 
     // Private Variables
     private bool isFixingTurret = false;
@@ -34,8 +37,9 @@ public class Motor : MonoBehaviour
 	{
 		tf = gameObject.GetComponent<Transform> ();
         player = GetComponent<PlayerController> ();
-        controller = GetComponent<CharacterController> ();
-        fixedPosition = new Quaternion();
+        fixedPosition = new Quaternion ();
+		bottomTF = bottomPoint.transform;
+		controller = GetComponent<CharacterController> ();
 	}
 	
 	// Update is called once per frame
@@ -56,19 +60,19 @@ public class Motor : MonoBehaviour
 	}
 
     // Movement functions
-    public void MoveFoward(float speed)
+    public void MoveForward(float speed)
     {
-        controller.SimpleMove(tf.forward * speed);
+        SimpleMove(tf.forward * speed);
     }
 
     public void MoveBackward(float speed)
     {
-        MoveFoward(-speed);
+        MoveForward(-speed);
     }
 
     public void ApplyGravity()
     {
-        controller.SimpleMove(Vector3.zero);
+        SimpleMove(Vector3.zero);
     }
 
     public void TurnRight(float turnSpeed)
@@ -89,7 +93,6 @@ public class Motor : MonoBehaviour
         // Rotate the turret
         if ((turretTF.rotation.eulerAngles.x >= 360 - turretLimits || turretTF.rotation.eulerAngles.x < 10) && !isFixingTurret)
         {
-            Debug.Log("Turret Limits: " + turretLimits.ToString() + "\tResults Limit: " + (360 - turretLimits).ToString());
             turretTF.Rotate(-Vector3.right * rotateSpeed * Time.deltaTime);
         }
 
@@ -99,7 +102,7 @@ public class Motor : MonoBehaviour
     public void TurretDown(float rotateSpeed)
     {
         // Rotate the turret
-        if (turretTF.rotation.eulerAngles.x != 0 && turretTF.rotation.eulerAngles.x > 361 - turretLimits && !isFixingTurret)
+        if (turretTF.rotation.eulerAngles.x != 0 && turretTF.rotation.eulerAngles.x > 350 - turretLimits && !isFixingTurret)
         {
             turretTF.Rotate(Vector3.right * rotateSpeed * Time.deltaTime);
         }
@@ -145,4 +148,15 @@ public class Motor : MonoBehaviour
         tempRotation.eulerAngles = new Vector3(turretTF.rotation.eulerAngles.x, turretTF.rotation.eulerAngles.y, 0);
         turretTF.rotation = tempRotation;
     }
+
+	/// <summary>
+	/// Moves at the determined speed per second, while also applying gravity
+	/// </summary>
+	/// <param name="speed">Speed.</param>
+	private void SimpleMove(Vector3 speed)
+	{
+		// Create variables
+		Vector3 target = (speed + Physics.gravity) * Time.deltaTime;
+		controller.Move (target);
+	}
 }
